@@ -1,4 +1,4 @@
-#include "function.h"
+#include "Function.h"
     int main(int argc, char* argv[]){
 int variable_a,variable_b,temp;
 variable_a=75;
