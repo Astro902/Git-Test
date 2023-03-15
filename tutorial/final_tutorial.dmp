@@ -1,0 +1,73 @@
+
+tutorial.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	00008537          	lui	a0,0x8
+   4:	00050113          	mv	sp,a0
+   8:	050000ef          	jal	ra,58 <main>
+
+0000000c <hang>:
+   c:	0000006f          	j	c <hang>
+
+00000010 <max>:
+  10:	fd010113          	addi	sp,sp,-48
+  14:	02812623          	sw	s0,44(sp)
+  18:	03010413          	addi	s0,sp,48
+  1c:	fca42e23          	sw	a0,-36(s0)
+  20:	fcb42c23          	sw	a1,-40(s0)
+  24:	fdc42703          	lw	a4,-36(s0)
+  28:	fd842783          	lw	a5,-40(s0)
+  2c:	00f75863          	bge	a4,a5,3c <max+0x2c>
+  30:	fd842783          	lw	a5,-40(s0)
+  34:	fef42623          	sw	a5,-20(s0)
+  38:	00c0006f          	j	44 <max+0x34>
+  3c:	fdc42783          	lw	a5,-36(s0)
+  40:	fef42623          	sw	a5,-20(s0)
+  44:	fec42783          	lw	a5,-20(s0)
+  48:	00078513          	mv	a0,a5
+  4c:	02c12403          	lw	s0,44(sp)
+  50:	03010113          	addi	sp,sp,48
+  54:	00008067          	ret
+
+00000058 <main>:
+  58:	fd010113          	addi	sp,sp,-48
+  5c:	02112623          	sw	ra,44(sp)
+  60:	02812423          	sw	s0,40(sp)
+  64:	03010413          	addi	s0,sp,48
+  68:	fca42e23          	sw	a0,-36(s0)
+  6c:	fcb42c23          	sw	a1,-40(s0)
+  70:	04b00793          	li	a5,75
+  74:	fef42623          	sw	a5,-20(s0)
+  78:	02000793          	li	a5,32
+  7c:	fef42423          	sw	a5,-24(s0)
+  80:	fe042223          	sw	zero,-28(s0)
+  84:	0380006f          	j	bc <main+0x64>
+  88:	fec42703          	lw	a4,-20(s0)
+  8c:	fe842783          	lw	a5,-24(s0)
+  90:	00f75a63          	bge	a4,a5,a4 <main+0x4c>
+  94:	fe842783          	lw	a5,-24(s0)
+  98:	ff678793          	addi	a5,a5,-10
+  9c:	fef42423          	sw	a5,-24(s0)
+  a0:	0100006f          	j	b0 <main+0x58>
+  a4:	fec42783          	lw	a5,-20(s0)
+  a8:	ff678793          	addi	a5,a5,-10
+  ac:	fef42623          	sw	a5,-20(s0)
+  b0:	fe442783          	lw	a5,-28(s0)
+  b4:	00178793          	addi	a5,a5,1
+  b8:	fef42223          	sw	a5,-28(s0)
+  bc:	fe442703          	lw	a4,-28(s0)
+  c0:	00300793          	li	a5,3
+  c4:	fce7d2e3          	bge	a5,a4,88 <main+0x30>
+  c8:	fe842583          	lw	a1,-24(s0)
+  cc:	fec42503          	lw	a0,-20(s0)
+  d0:	f41ff0ef          	jal	ra,10 <max>
+  d4:	fea42023          	sw	a0,-32(s0)
+  d8:	00000793          	li	a5,0
+  dc:	00078513          	mv	a0,a5
+  e0:	02c12083          	lw	ra,44(sp)
+  e4:	02812403          	lw	s0,40(sp)
+  e8:	03010113          	addi	sp,sp,48
+  ec:	00008067          	ret
